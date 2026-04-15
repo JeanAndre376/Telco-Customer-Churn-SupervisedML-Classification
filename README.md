@@ -120,7 +120,7 @@ Telco-Customer-Churn-SupervisedML-Classification/
 
 ---
 
-## Key findings
+## Key findings and Insights
 
 ## SHAP Summary
 ![ShapPlot](SummaryPlotBeeswarmSharp.png)
@@ -131,64 +131,67 @@ Telco-Customer-Churn-SupervisedML-Classification/
 ## Coefficients
 ![Coefficients](LogisticRegressionCoefficients.png)
 
-Insights derived from SHAP (SHapley Additive exPlanations) analysis on the Logistic Regression model — providing feature-level explanations for every individual prediction, not just global averages.
+**1. Tenure is the Dominant Predictor (SHAP = 1.08)**  
 
-**1. Tenure is the single most powerful predictor (SHAP = 1.08)**  
-The longer a customer stays, the less likely they are to churn. Short-tenure customers (low feature value) consistently push the model toward a churn prediction (positive SHAP impact). This is confirmed by the SHAP summary plot — tenure has the widest spread of any feature, with low values (pink) driving churn and high values (blue) strongly preventing it.
+SHAP importance of 1.08 — almost twice the second feature. Short tenure customers (0-12 months) carry dramatically higher churn risk as confirmed by the beeswarm plot showing high-feature-value (red) dots clustering at SHAP values of -2 to -3, meaning long tenure customers have strong negative SHAP values (pushing strongly away from churn).
+• Business implication: Focus all retention efforts on customers in the first 12 months. An early engagement programme (onboarding calls, service quality checks, loyalty offers) during the critical first year is the single most impactful intervention.
 
-**2. Having no internet service is actually a strong retention signal (SHAP = 0.54)**  
-`InternetService_No` is the second most important feature. Customers without internet service churn far less — likely because they have simpler, lower-cost plans with fewer reasons to leave.
+**2. Contract Type is the Strongest Categorical Driver**  
 
-**3. Contract type is a critical lever — in both directions**  
-- `Contract_One year` (SHAP = 0.43, negative coefficient) — the strongest protective factor. Annual contract customers are significantly less likely to churn.  
-- `Contract_Two year` (SHAP = 0.38, negative coefficient) — even stronger retention.  
-- `Contract_Month-to-month` (positive coefficient) — increases churn probability. Customers with no commitment are the highest-risk group.
+Month-to-month contract (coefficient +0.55) dramatically increases churn risk while one-year contract (coefficient -1.10) provides the strongest individual protection against churn. The Contract_One year coefficient of -1.10 is the largest magnitude coefficient in the entire model.
 
-**4. Fiber optic internet increases churn risk (SHAP = 0.39, positive coefficient)**  
-Despite being the premium service tier, fiber optic customers churn more. Combined with no online security or tech support, this signals a "high price, low perceived value" problem — customers paying more but feeling underserved.
+• Business implication: Incentivising customers to upgrade from month-to-month to annual contracts (discount, service bundle, device offer) is the most cost-effective retention strategy. Even a partial conversion of month-to-month customers to one-year contracts would significantly reduce overall churn
 
-**5. No online security + no tech support = compounding risk**  
-`OnlineSecurity_No` (SHAP = 0.22) and `TechSupport_No` (SHAP = 0.21) both increase churn probability. Customers without these add-ons feel exposed and unsupported — particularly those on fiber optic plans.
+**3. Fiber Optic Customers are the Highest-Risk Service Segment**  
 
-**6. Electronic check payment is a risk signal (SHAP = 0.17, positive coefficient)**  
-Customers paying by electronic check churn at higher rates than those using automatic bank transfer or credit card. This may reflect lower commitment or financial instability.
+InternetService_Fiber optic achieves both the highest positive coefficient (+0.75) and the fourth highest SHAP importance (0.39). Fiber optic customers pay premium prices and have the most competitive alternatives — making them the most likely to switch providers.
 
-**7. Highest-risk customer profile (Churn probability: 92.44%)**  
-The model identified customer index 1149 as the highest-risk customer in the dataset. Their churn drivers:
-- Very short tenure → SHAP +1.62 (strongest single driver)
-- Fiber optic internet → SHAP +0.44
-- Electronic check payment → SHAP +0.23
-- No online security → SHAP +0.23
-- Month-to-month contract → SHAP +0.22
+• Business implication: Implement a dedicated fiber optic retention programme — proactive account management, competitive pricing review, and service quality monitoring specifically for fiber customers on month-to-month contracts (the highest-risk combination).
 
-This customer profile — new, fiber optic, no add-ons, paying by electronic check — is the archetypal at-risk customer this model is designed to catch.
+**4. Absence of Support Services Drives Churn**  
+OnlineSecurity_No (coefficient +0.50, SHAP 0.21) and TechSupport_No (coefficient +0.45, SHAP 0.22) are significant churn drivers. Customers who lack security and support services feel underserved and are more likely to seek alternatives.
 
----
+• Business implication: Bundle online security and tech support into service packages at onboarding — customers with these services show significantly lower churn rates. Consider offering these services at a discount or free trial to at-risk customers.
 
-## Business recommendation
+**7. High-Risk Customer Profile**  
+SHAP analysis of the highest-risk customer (predicted churn probability 0.82+) reveals the typical high-risk profile: very short tenure (0-6 months), month-to-month contract, fiber optic internet service, no online security, electronic check payment method, and no tech support. This combination of factors produces a churn probability exceeding 0.80 in the majority of instances where all conditions are met simultaneously.
 
-Based on the Logistic Regression model and SHAP analysis, the following retention strategy is recommended. Because LR provides interpretable coefficients — and SHAP provides per-customer explanations — every recommendation below is directly traceable to a model output, not a gut feeling.
+**7. Limitations and Future Work** 
 
-**Priority segment to target:**  
-New customers (tenure < 12 months) + fiber optic internet + month-to-month contract + no online security or tech support + paying by electronic check. This is the highest-risk profile identified by the model, with predicted churn probabilities exceeding 90%.
+Single snapshot data: Dataset represents one point in time — no temporal customer behaviour tracking
+Impact: Cannot capture churn risk evolution over lifecycle; contract renewal spikes invisible
 
-**Recommended actions:**
+Missing behavioural features: No complaint history, support tickets, app usage, or network quality scores
+Impact: Important churn drivers (dissatisfaction) absent; model relies on billing/contract proxies
 
-- **Intervene early on tenure** — tenure is the #1 churn driver (SHAP = 1.08). The first 6 months are the highest-risk window. Trigger proactive outreach for all new customers in months 1–3: a welcome call, onboarding support, or a loyalty discount.
+Class imbalance (mild): 26.5% churn vs 73.5% no-churn requires class weighting 
+Impact: Recall for churn class (80.48%) lower than no-churn (88%+); some churners still missed
 
-- **Incentivize contract upgrades** — `Contract_One year` has the strongest protective coefficient in the model. Offering month-to-month customers a first-year discount to switch to an annual plan directly addresses the top controllable churn driver.
+Low precision: 49.09% precision means ~51% of churn alerts are false alarms
+Impact: Retention budget partially wasted on loyal customers who were not at risk
 
-- **Bundle security & support add-ons at onboarding** — `OnlineSecurity_No` and `TechSupport_No` both increase churn risk. For fiber optic customers especially, offer a 3-month free trial of these services at signup. Customers who feel protected churn significantly less.
+**Most Significant Limitations**:
 
-- **Address the fiber optic value gap** — fiber optic customers churn despite paying premium prices. Consider a satisfaction survey or proactive tech support outreach for fiber optic customers in their first 90 days.
+The most significant limitation is the low precision (49.09%) , meaning approximately 51% of customers flagged as churners are actually loyal customers who would not have left. This false alarm rate means that for every 2 retention offers sent, 1 goes to a customer who did not need it wasting retention budget. While recall (80.48%) is strong, the precision-recall trade-off remains the primary performance challenge.
 
-- **Target electronic check payers for payment migration** — offer a small billing credit (e.g. $5/month) to switch to automatic bank transfer. This reduces churn risk and payment failure rates simultaneously.
+The single-snapshot nature of the data is also limiting. Customer churn is a dynamic process — risk profiles change as charges increase, competitors enter the market, or service quality degrades. A longitudinal dataset with monthly snapshots per customer would enable sequence-based modelling that captures the trajectory of churn risk rather than its static value at one point in time.
+**Future Improvements**
 
-- **Deploy as a monthly early warning system** — score all active customers monthly using the LR model. Any customer with predicted churn probability > 60% should automatically enter a retention workflow. SHAP waterfall charts can generate a plain-language explanation for each flagged customer, making it actionable for non-technical retention teams.
+Temporal features: Add month-over-month KPI changes: charge increase trend, usage decline, support frequency.
+ImpactCaptures early warning signals before churn decision;
 
-> **Estimated impact:** The model catches 80% of actual churners (Recall = 0.80). Targeting the top 20% highest-risk customers identified by the model could prevent the majority of preventable churn in any given month, while keeping retention campaign costs manageable.
+Network quality integration: Link churn to network KPIs (call drop rate, data speed, NPS scores)
+Impact: Bridges customer churn with technical root causes — directly actionable by RF engineers
 
----
+Survival analysis: Replace binary with Cox Proportional Hazards model 
+Impact: Predict not just IF customer churns but WHEN — enables time-targeted retention offers
+
+Ensemble/stacking: Stack LR + DT + XGBoost using Ridge meta-learner on OOF predictions
+Impact: Expected AUC-ROC improvement +1-2% through diversity of base model errors
+
+**RF Engineering Extension**
+
+From an RF Planning & Optimization perspective, the most impactful future extension is the integration of network quality KPIs as additional churn predictors. Network-related churn — where customers leave due to poor coverage, dropped calls, or slow data —is a controllable variable that RF engineers can directly address. Linking the churn prediction model to cell-level KPIs (RSRP, RSRQ, SINR, dropped call rate) by customer location would enable: network-triggered churn prevention (identifying customers in cells with degrading KPIs before they churn), root cause attribution via SHAP (showing that churn in a specific area is driven by interference rather than pricing), and coverage investment prioritisation (directing antenna optimisation resources to cells serving high-CLV, high-churn-risk customer clusters).
 
 ## How to run
 
