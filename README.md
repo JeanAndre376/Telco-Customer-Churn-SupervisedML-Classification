@@ -40,7 +40,7 @@ Customer churn is one of the most costly problems in the telecom industry. Acqui
 | Source | [IBM Watson Telco Customer Churn — Kaggle](https://www.kaggle.com/datasets/blastchar/telco-customer-churn) |
 | Records | 7,043 customers |
 | Original features | 20 |
-| Features after engineering | 24 (after encoding categorical variables) |
+| Features after engineering | 24 (after encoding categorical variables and removal of some irrelevant features (no correlation) |
 | Target | Churn (Yes/No) — 26.5% positive rate |
 
 **Key features include:** contract type, tenure, monthly charges, internet service type, payment method, tech support, and online security subscription.
