@@ -90,7 +90,7 @@ Telco-Customer-Churn-SupervisedML-Classification/
 | Decision Tree | 0.823 | 0.73 | 0.79 | 0.50 | 0.61 |
 | XGBoost | 0.828 | 0.74 | 0.78 | 0.50 | 0.61 |
 | Random Forest | 0.814 | 0.78 | 0.49 | 0.60 | 0.54 |
-![All Models](AllModelMetric.png)
+![](AllModelMetric.png)
 
 > **Winner: Logistic Regression** ⭐ — highest AUC-ROC (0.835) and highest Recall (0.80) across all 4 models. In a churn context, **Recall is the most important metric** — it measures how many actual churners we catch. Missing a churner (False Negative) is far more costly than a false alarm. LR correctly identified **301 out of 374 churners** (TP=301, FN=73), while also offering full interpretability — each coefficient explains exactly why a customer is flagged as at-risk.
 
