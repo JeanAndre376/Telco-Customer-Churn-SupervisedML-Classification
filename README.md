@@ -3,7 +3,7 @@
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](YOUR_COLAB_LINK_HERE)
 [![Python](https://img.shields.io/badge/Python-3.10-blue.svg)](https://www.python.org/)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-1.3-orange.svg)](https://scikit-learn.org/)
-
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/JeanAndre376/repo/blob/main/Telco_Customer_Churn_SupervisedML_Classification.ipynb)
 
 Predicting which telecom customers are likely to cancel their service, using the IBM Watson Telco dataset. Four classification models were trained and evaluated to identify the best predictor — enabling the business to intervene before losing customers.
 
