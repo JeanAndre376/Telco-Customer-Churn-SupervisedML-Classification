@@ -131,6 +131,11 @@ Telco-Customer-Churn-SupervisedML-Classification/
 ## Coefficients
 ![Coefficients](LogisticRegressionCoefficients.png)
 
+
+## High Risk Profile
+![High Risk](HighRiskCustomer.png)
+
+
 **1. Tenure is the Dominant Predictor (SHAP = 1.08)**  
 
 SHAP importance of 1.08 — almost twice the second feature. Short tenure customers (0-12 months) carry dramatically higher churn risk as confirmed by the beeswarm plot showing high-feature-value (red) dots clustering at SHAP values of -2 to -3, meaning long tenure customers have strong negative SHAP values (pushing strongly away from churn).
@@ -154,7 +159,7 @@ OnlineSecurity_No (coefficient +0.50, SHAP 0.21) and TechSupport_No (coefficient
 • Business implication: Bundle online security and tech support into service packages at onboarding — customers with these services show significantly lower churn rates. Consider offering these services at a discount or free trial to at-risk customers.
 
 **7. High-Risk Customer Profile**  
-SHAP analysis of the highest-risk customer (predicted churn probability 0.82+) reveals the typical high-risk profile: very short tenure (0-6 months), month-to-month contract, fiber optic internet service, no online security, electronic check payment method, and no tech support. This combination of factors produces a churn probability exceeding 0.80 in the majority of instances where all conditions are met simultaneously.
+SHAP analysis of the highest-risk customer (1149) (predicted churn probability 0.92+) reveals the typical high-risk profile: very short tenure (0-6 months), month-to-month contract, fiber optic internet service, no online security, electronic check payment method, and no tech support. This combination of factors produces a churn probability exceeding 0.80 in the majority of instances where all conditions are met simultaneously.
 
 **7. Limitations and Future Work** 
 
