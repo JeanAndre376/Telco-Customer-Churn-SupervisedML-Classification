@@ -102,10 +102,10 @@ Telco-Customer-Churn-SupervisedML-Classification/
 - **Missed only 73 churners** — the lowest false negative count among all models
 - Random Forest had the worst Recall (0.49) — missing nearly half of all churners despite higher accuracy
 
+## ROC Curve Charts all models
+![ROC Curve](RocCurve.png)
 
 ### Why Logistic Regression over XGBoost?
-
-![Confusion Matrix](ConfusionMatrix.png)
 
 | Criteria | Logistic Regression | XGBoost |
 |---|---|---|
@@ -121,6 +121,15 @@ Telco-Customer-Churn-SupervisedML-Classification/
 ---
 
 ## Key findings
+
+## SHAP Summary
+![ShapPlot](SummaryPlotBeeswarmSharp.png)
+
+## Feature Importance
+![Feature Importance](FeatureImportanceSharp.png)
+
+## Coefficients
+![Coefficients](LogisticRegressionCoefficients.png)
 
 Insights derived from SHAP (SHapley Additive exPlanations) analysis on the Logistic Regression model — providing feature-level explanations for every individual prediction, not just global averages.
 
