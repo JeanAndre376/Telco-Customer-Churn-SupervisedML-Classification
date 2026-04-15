@@ -1,6 +1,7 @@
 # Telco Customer Churn — Supervised ML Classification
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](YOUR_COLAB_LINK_HERE)
+https://colab.research.google.com/github/JeanAndre376/repo/blob/main/Telco_Customer_Churn_SupervisedML_Classification.ipynb
 [![Python](https://img.shields.io/badge/Python-3.10-blue.svg)](https://www.python.org/)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-1.3-orange.svg)](https://scikit-learn.org/)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/JeanAndre376/repo/blob/main/Telco_Customer_Churn_SupervisedML_Classification.ipynb)
