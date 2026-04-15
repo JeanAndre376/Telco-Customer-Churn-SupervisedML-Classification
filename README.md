@@ -175,6 +175,7 @@ Impact: Retention budget partially wasted on loyal customers who were not at ris
 The most significant limitation is the low precision (49.09%) , meaning approximately 51% of customers flagged as churners are actually loyal customers who would not have left. This false alarm rate means that for every 2 retention offers sent, 1 goes to a customer who did not need it wasting retention budget. While recall (80.48%) is strong, the precision-recall trade-off remains the primary performance challenge.
 
 The single-snapshot nature of the data is also limiting. Customer churn is a dynamic process — risk profiles change as charges increase, competitors enter the market, or service quality degrades. A longitudinal dataset with monthly snapshots per customer would enable sequence-based modelling that captures the trajectory of churn risk rather than its static value at one point in time.
+
 **Future Improvements**
 
 Temporal features: Add month-over-month KPI changes: charge increase trend, usage decline, support frequency.
