@@ -3,7 +3,7 @@
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](YOUR_COLAB_LINK_HERE)
 [![Python](https://img.shields.io/badge/Python-3.10-blue.svg)](https://www.python.org/)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-1.3-orange.svg)](https://scikit-learn.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 
 Predicting which telecom customers are likely to cancel their service, using the IBM Watson Telco dataset. Four classification models were trained and evaluated to identify the best predictor — enabling the business to intervene before losing customers.
 
@@ -199,40 +199,13 @@ Impact: Expected AUC-ROC improvement +1-2% through diversity of base model error
 
 From an RF Planning & Optimization perspective, the most impactful future extension is the integration of network quality KPIs as additional churn predictors. Network-related churn — where customers leave due to poor coverage, dropped calls, or slow data —is a controllable variable that RF engineers can directly address. Linking the churn prediction model to cell-level KPIs (RSRP, RSRQ, SINR, dropped call rate) by customer location would enable: network-triggered churn prevention (identifying customers in cells with degrading KPIs before they churn), root cause attribution via SHAP (showing that churn in a specific area is driven by interference rather than pricing), and coverage investment prioritisation (directing antenna optimisation resources to cells serving high-CLV, high-churn-risk customer clusters).
 
-## How to run
 
-### Option 1 — Run in Google Colab (recommended)
+# Notebook
+[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-orange)](Telco_Customer_Churn_SupervisedML_Classification.ipynb)
 
-Click the badge at the top of this README → runs in your browser, no setup needed.
+## Connect
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://www.linkedin.com/in/jean-fred-a-williama-36905315/)
 
-### Option 2 — Run locally
-
-```bash
-# Clone the repo
-git clone https://github.com/JeanAndre376/Telco-Customer-Churn-SupervisedML-Classification.git
-cd Telco-Customer-Churn-SupervisedML-Classification
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Open the notebook
-jupyter notebook Telco_Customer_Churn_SupervisedML_Classification.ipynb
-```
-
-### requirements.txt
-
-```
-pandas
-numpy
-scikit-learn
-xgboost
-shap
-matplotlib
-seaborn
-jupyter
-```
-
----
 
 ## Tools & libraries
 
