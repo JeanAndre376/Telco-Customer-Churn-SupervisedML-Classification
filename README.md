@@ -159,7 +159,7 @@ OnlineSecurity_No (coefficient +0.50, SHAP 0.21) and TechSupport_No (coefficient
 • Business implication: Bundle online security and tech support into service packages at onboarding — customers with these services show significantly lower churn rates. Consider offering these services at a discount or free trial to at-risk customers.
 
 **7. High-Risk Customer Profile**  
-SHAP analysis of the highest-risk customer (index: 1149, predicted churn probability 0.92+) reveals the typical high-risk profile: very short tenure (0-6 months), month-to-month contract, fiber optic internet service, no online security, electronic check payment method, and no tech support. This combination of factors produces a churn probability exceeding 0.90 in the majority of instances where all conditions are met simultaneously.
+SHAP analysis of the highest-risk customer (index: 1149, predicted churn probability 0.92+) reveals the typical high-risk profile: very short tenure (0-6 months), month-to-month contract, fiber optic internet service, no online security, electronic check payment method, and no tech support.
 
 **7. Limitations and Future Work** 
 
